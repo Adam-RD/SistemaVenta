@@ -22,6 +22,13 @@ public class ReparacionController : ControllerBase
     public IEnumerable<ReparacionDTO> GetAllReparaciones()
     {
         var reparaciones = _reparacionRepository.GetAll();
+
+        foreach (var reparacion in reparaciones)
+        {
+            // Calcular el Total para cada reparación
+            reparacion.CalcularTotal();
+        }
+
         return _mapper.Map<IEnumerable<ReparacionDTO>>(reparaciones);
     }
 
@@ -35,6 +42,9 @@ public class ReparacionController : ControllerBase
         {
             return NotFound();
         }
+
+        reparacion.CalcularTotal();
+
         return Ok(_mapper.Map<ReparacionDTO>(reparacion));
     }
 
