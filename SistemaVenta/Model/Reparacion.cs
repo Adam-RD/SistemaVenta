@@ -1,4 +1,6 @@
-﻿using Swashbuckle.AspNetCore.Annotations;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Swashbuckle.AspNetCore.Annotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaVenta.Model
 
@@ -9,6 +11,8 @@ namespace SistemaVenta.Model
         public string Descricion { get; set; }= string.Empty;
         public double Inversion { get; set; } = 0;
         public double ManoObra { get; set; } = 0;
+        
+        [Column(TypeName = "date")]
         public DateTime Fecha { get; set; }
         public double Total { get; set; } = 0;
         public string NombreCliente { get; set; } =string.Empty;

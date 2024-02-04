@@ -20,6 +20,13 @@ public class ReparacionRepository : IReparacionRepository
     {
         return _context.Reparaciones.FirstOrDefault(r => r.Id == id);
     }
+    public IEnumerable<Reparacion> BuscarReparacionesPorRangoDeFechas(DateTime fechaInicio, DateTime fechaFin)
+    {
+        return _context.Reparaciones
+            .Where(r => r.Fecha.Date >= fechaInicio.Date && r.Fecha.Date <= fechaFin.Date)
+            .ToList();
+    }
+
 
     public void Add(Reparacion reparacion)
     {

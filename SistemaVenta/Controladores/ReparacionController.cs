@@ -48,6 +48,20 @@ public class ReparacionController : ControllerBase
         return Ok(_mapper.Map<ReparacionDTO>(reparacion));
     }
 
+    [HttpGet("buscarPorFecha")]
+    public IActionResult BuscarReparacionesPorRangoDeFechas([FromQuery] DateTime fechaInicio, [FromQuery] DateTime fechaFin)
+    {
+        try
+        {
+            var reparaciones = _reparacionRepository.BuscarReparacionesPorRangoDeFechas(fechaInicio, fechaFin);
+            return Ok(reparaciones);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Error interno del servidor: {ex.Message}");
+        }
+    }
+
     [HttpPost]
     [SwaggerResponse(201, "Reparación creada", typeof(ReparacionDTO))]
     [SwaggerResponse(400, "Solicitud no válida")]

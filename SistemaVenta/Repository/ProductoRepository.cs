@@ -29,6 +29,17 @@ namespace SistemaVenta.Repository
             return _mapper.Map<IEnumerable<ProductoDTO>>(productos);
         }
 
+        public async Task<IEnumerable<ProductoDTO>> BuscarProductoPorNombre(string nombre)
+        {
+            var productos = await _context.Productos
+                .Include(p => p.Categoria)
+                .Where(p => p.Nombre.Contains(nombre))
+                .ToListAsync();
+
+            return _mapper.Map<IEnumerable<ProductoDTO>>(productos);
+        }
+
+
         public async Task AgregarProducto(ProductoDTO productoDto)
         {
             var producto = _mapper.Map<Producto>(productoDto);

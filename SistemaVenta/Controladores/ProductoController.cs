@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SistemaVenta.DTOs;
 using SistemaVenta.Interfaces;
+using SistemaVenta.Model;
 
 namespace SistemaVenta.Controladores
 {
@@ -22,7 +23,15 @@ namespace SistemaVenta.Controladores
             var productos = await _productoRepository.ObtenerTodosLosProductos();
             return Ok(productos);
         }
-        
+
+        [HttpGet("buscar")]
+        public async Task<IActionResult> BuscarProductoPorNombre([FromQuery] string nombre)
+        {
+            var productos = await _productoRepository.BuscarProductoPorNombre(nombre);
+            return Ok(productos);
+        }
+
+
         [HttpGet("{id}")]
         public async Task<IActionResult> ObtenerProductoPorId(int id)
         {

@@ -5,6 +5,7 @@ namespace SistemaVenta.Interfaces
     public interface IProducto
     {
         Task<ProductoDTO> ObtenerProductoPorId(int id);
+        Task<IEnumerable<ProductoDTO>> BuscarProductoPorNombre(string nombre);
         Task<IEnumerable<ProductoDTO>> ObtenerTodosLosProductos();
         Task AgregarProducto(ProductoDTO productoDto);
         Task ActualizarProducto(ProductoDTO productoDto);

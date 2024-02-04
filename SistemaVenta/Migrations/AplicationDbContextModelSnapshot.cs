@@ -36,7 +36,7 @@ namespace SistemaVenta.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categorias");
+                    b.ToTable("Categorias", (string)null);
                 });
 
             modelBuilder.Entity("SistemaVenta.Model.Producto", b =>
@@ -71,7 +71,7 @@ namespace SistemaVenta.Migrations
 
                     b.HasIndex("CategoriaId");
 
-                    b.ToTable("Productos");
+                    b.ToTable("Productos", (string)null);
                 });
 
             modelBuilder.Entity("SistemaVenta.Model.Reparacion", b =>
@@ -107,7 +107,7 @@ namespace SistemaVenta.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Reparaciones");
+                    b.ToTable("Reparaciones", (string)null);
                 });
 
             modelBuilder.Entity("SistemaVenta.Model.Producto", b =>
