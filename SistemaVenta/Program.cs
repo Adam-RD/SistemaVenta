@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using SistemaVenta.Interfaces;
 using SistemaVenta.Model;
+using SistemaVenta.Repository;
 using SistemaVenta.Utlidades;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +21,9 @@ builder.Services.AddDbContext<AplicationDbContext>(options =>
 });
 
 builder.Services.AddScoped<IReparacionRepository, ReparacionRepository>();
+builder.Services.AddScoped<ICategoria, CategoriaRepository>();
+builder.Services.AddScoped<IProducto, ProductoRepository>();
+
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
 

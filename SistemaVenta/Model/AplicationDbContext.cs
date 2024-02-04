@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SistemaVenta.Interfaces;
+using SistemaVenta.Repository;
 //using SistemaVenta.Interfaces;
 
 namespace SistemaVenta.Model
@@ -8,18 +10,21 @@ namespace SistemaVenta.Model
         public AplicationDbContext(DbContextOptions<AplicationDbContext> options)
             : base(options) { }
 
-        public DbSet<Reparacion> Reparaciones{ get; set; }
-
-        public void ConfigureServices(IServiceCollection services)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Otras configuraciones de servicios
+            base.OnModelCreating(modelBuilder);
 
-            services.AddScoped<IReparacionRepository, ReparacionRepository>();
-
-            // ...
+            modelBuilder.Entity<Reparacion>().Property(a => a.Fecha).HasColumnType("date");
         }
 
+        public DbSet<Reparacion> Reparaciones{ get; set; }
+
+        public DbSet<Producto> Productos { get; set; }
+
+        public DbSet <Categoria> Categorias { get; set; } 
 
         
+
+              
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using SistemaVenta.DTOs;
 using SistemaVenta.Model;
 
 namespace SistemaVenta.Utlidades
@@ -9,6 +10,12 @@ namespace SistemaVenta.Utlidades
         {
             CreateMap<ReparacionDTO, Reparacion>();
             CreateMap<Reparacion, ReparacionDTO>();
+            
+            CreateMap<ProductoDTO,Producto>();
+            CreateMap<Producto, ProductoDTO>();
+
+            CreateMap<CategoriaDTO, Categoria>();
+            CreateMap<Categoria, CategoriaDTO>();
 
         }
     }

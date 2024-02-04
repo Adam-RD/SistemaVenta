@@ -9,7 +9,7 @@ namespace SistemaVenta.Model
         public string Descricion { get; set; }= string.Empty;
         public double Inversion { get; set; } = 0;
         public double ManoObra { get; set; } = 0;
-        public DateTime Fecha { get; set; }= DateTime.Now;
+        public DateTime Fecha { get; set; }
         public double Total { get; set; } = 0;
         public string NombreCliente { get; set; } =string.Empty;
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaVenta.Model;
 
@@ -11,9 +12,11 @@ using SistemaVenta.Model;
 namespace SistemaVenta.Migrations
 {
     [DbContext(typeof(AplicationDbContext))]
-    partial class AplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240204011952_CategoriaProducto")]
+    partial class CategoriaProducto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,7 +53,7 @@ namespace SistemaVenta.Migrations
                     b.Property<int>("CantidadDisponible")
                         .HasColumnType("int");
 
-                    b.Property<int>("CategoriaId")
+                    b.Property<int?>("CategoriaId")
                         .HasColumnType("int");
 
                     b.Property<string>("Descripcion")
@@ -61,11 +64,11 @@ namespace SistemaVenta.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("PrecioCompra")
-                        .HasColumnType("float");
+                    b.Property<decimal>("PrecioCompra")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<double>("PrecioVenta")
-                        .HasColumnType("float");
+                    b.Property<decimal>("PrecioVenta")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -90,7 +93,7 @@ namespace SistemaVenta.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Fecha")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("Inversion")
                         .HasColumnType("float");
@@ -113,17 +116,10 @@ namespace SistemaVenta.Migrations
             modelBuilder.Entity("SistemaVenta.Model.Producto", b =>
                 {
                     b.HasOne("SistemaVenta.Model.Categoria", "Categoria")
-                        .WithMany("Productos")
-                        .HasForeignKey("CategoriaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("CategoriaId");
 
                     b.Navigation("Categoria");
-                });
-
-            modelBuilder.Entity("SistemaVenta.Model.Categoria", b =>
-                {
-                    b.Navigation("Productos");
                 });
 #pragma warning restore 612, 618
         }
